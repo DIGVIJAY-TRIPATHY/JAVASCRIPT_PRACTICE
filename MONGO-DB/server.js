@@ -4,8 +4,16 @@ const mongoose = require('mongoose');
 
 const app = express()
 
-
 app.use(express.json()); //middleware for parsing JSON bodies
+
+
+//importing user route
+const userRoute = require('./routes/userRoute');
+
+//using user route
+app.use('/api/users', userRoute);
+
+
 
 // Connect to MongoDB
 
@@ -20,8 +28,8 @@ mongoose.connect(process.env.MONGO_URI)
 
 //Start server
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT,()=>{
-    console.log("server running on http://localhost:3000");
+    console.log(`server running on http://localhost:${PORT}`);
     
 })
